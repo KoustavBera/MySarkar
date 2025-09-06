@@ -469,6 +469,16 @@ logger.info('Scheme search', {
 ```
 
 ---
+📊 Monitoring & Logging
+| Tool           | Purpose             | Example Metrics / Logs                    |
+| -------------- | ------------------- | ----------------------------------------- |
+| **Prometheus** | Metrics collection  | API latency, request count, DB query time |
+| **Grafana**    | Dashboards & alerts | API health, inference latency, IVR funnel |
+| **Loki**       | Centralized logging | Errors, OCR failures, Twilio webhook logs |
+| **Tempo**      | Distributed tracing | End-to-end request traces across services |
+| **Sentry**     | Error monitoring    | Backend crashes, React errors             |
+
+---
 
 ## 🌟 Future Roadmap
 
