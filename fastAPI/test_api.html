@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .test-section {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ccc;
+      }
+      button {
+        padding: 10px 15px;
+        margin: 5px;
+      }
+      .result {
+        background: #f5f5f5;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .error {
+        background: #ffebee;
+        color: #c62828;
+      }
+      .success {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Multilingual RAG Agent API Test</h1>
+
+    <div class="test-section">
+      <h3>Test Chat API</h3>
+      <input
+        type="text"
+        id="chatMessage"
+        placeholder="Enter your message"
+        style="width: 300px"
+      />
+      <select id="chatLanguage">
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Bengali">Bengali</option>
+      </select>
+      <button onclick="testChat()">Test Chat</button>
+      <div id="chatResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>Test Health API</h3>
+      <button onclick="testHealth()">Test Health</button>
+      <div id="healthResult" class="result"></div>
+    </div>
+
+    <script>
+      const API_BASE = "http://localhost:8000";
+
+      async function testChat() {
+        const message = document.getElementById("chatMessage").value;
+        const language = document.getElementById("chatLanguage").value;
+        const resultDiv = document.getElementById("chatResult");
+
+        if (!message) {
+          resultDiv.innerHTML =
+            '<div class="error">Please enter a message</div>';
+          return;
+        }
+
+        try {
+          resultDiv.innerHTML = "Testing...";
+
+          const response = await fetch(`${API_BASE}/chat`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: message,
+              language: language,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            resultDiv.innerHTML = `
+                        <div class="success">
+                            <strong>Success!</strong><br>
+                            Response: ${data.response}<br>
+                            Audio URL: ${data.audio_url ? "Generated" : "None"}
+                        </div>
+                    `;
+          } else {
+            resultDiv.innerHTML = `<div class="error">Error: ${data.detail}</div>`;
+          }
+        } catch (error) {
+          resultDiv.innerHTML = `<div class="error">Network Error: ${error.message}</div>`;
+        }
+      }
+
+      async function testHealth() {
+        const resultDiv = document.getElementById("healthResult");
+
+        try {
+          resultDiv.innerHTML = "Testing...";
+
+          const response = await fetch(`${API_BASE}/health`);
+          const data = await response.json();
+
+          if (response.ok) {
+            resultDiv.innerHTML = `<div class="success">Health Check: ${JSON.stringify(
+              data
+            )}</div>`;
+          } else {
+            resultDiv.innerHTML = `<div class="error">Health Check Failed</div>`;
+          }
+        } catch (error) {
+          resultDiv.innerHTML = `<div class="error">Network Error: ${error.message}</div>`;
+        }
+      }
+
+      // Test health on page load
+      window.onload = function () {
+        testHealth();
+      };
+    </script>
+  </body>
+</html>
