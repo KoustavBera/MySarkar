@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+@import url("../src/fonts/clash-display.css");
+@import url("../src/fonts/satoshi.css");
+@import url("../src/fonts/MilkyWay.css");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+@import "tailwindcss";
+
+/* index.css */
+html,
+body,
+#root {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+body {
+	@apply text-black dark:text-white;
+}
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+	/* your custom palette */
+	--color-primary: #ece8ff; /* #ECE8FF */
+	--color-secondary: #faf9fe; /* #FAF9FE */
+	--color-darkprimary: #ece8fe; /* #ECE8FE */
+	--color-text: #4a1c92; /* #4A1C92 */
+}
+* {
+	font-family: Satoshi-Regular, "Poppins";
+	::selection {
+		background: #2afe00;
+		color: rgb(0, 0, 0);
+	}
+	/* Dark mode (when .dark is on html element) */
+}
+
+.clash-display {
+	font-family: ClashDisplay-Regular;
+}
+.satoshi {
+	font-family: Satoshi-Regular;
+}
+.game {
+	font-family: "Doto", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 300;
+	font-style: normal;
+	font-variation-settings: "ROND" 0;
+}
+.playfair {
+	font-family: "Playfair", serif;
+	font-optical-sizing: auto;
+}
+.dark .green-glow {
+	text-shadow: rgba(9, 255, 0, 0.9) 0px 0px 39px;
+}
+button:focus.green-glow-button {
+	text-shadow: rgba(9, 255, 0, 0.9) 0px 0px 39px;
+}
+.MilkyWay {
+	font-family: "MilkyWay";
+}
+.green-glow-box:hover {
+	-webkit-box-shadow: 0px 0px 211px 45px rgba(0, 252, 4, 0.9);
+	-moz-box-shadow: 0px 0px 211px 45px rgba(0, 252, 4, 0.9);
+	box-shadow: 0px 0px 211px 45px rgba(0, 252, 4, 0.9);
+}
+.black-glow {
+	text-shadow: rgba(53, 255, 43, 0.9) 0px 0px 39px;
+}
+
+/* Recommended Lenis CSS */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+	pointer-events: none;
+}
+
+.dark.lenis {
+	scrollbar-color: rgba(100, 255, 100) #0e0911;
+	scroll-behavior: smooth;
+}
+.lenis {
+	scrollbar-color: rgba(100, 255, 100) #fff;
+	scroll-behavior: smooth;
+}
+
+/* Base toast style */
+.my-toast {
+	background: #fff;
+	color: #111;
+}
+
+/* When dark mode is active on the HTML element */
+html.dark .my-toast {
+	background: rgba(252, 252, 252, 0.31);
+	backdrop-filter: blur(10px);
+	color: #fff;
+}
+.DM {
+	font-family: "DM Sans", sans-serif;
+}
+@keyframes slide-up {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+.animate-slide-up {
+	animation: slide-up 0.3s ease-out;
+}

@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "MilkyWay";
+  src: url("../fonts/MilkyWalky-Regular.woff") format("woff"),
+    url("../fonts/MilkyWalky-Regular.ttf") format("truetype"),
+    url("../fonts/MilkyWalky-Regular.otf") format("opentype");
+}
